@@ -1,6 +1,6 @@
 import express from "express";
 import {
-  getAlchemyRequestContext,
+  addAlchemyContextToRequest,
   validateAlchemySignature,
   WebhookEvent,
 } from "./webhooksUtil";
@@ -14,7 +14,7 @@ async function main(): Promise<void> {
   // Middleware needed to validate the alchemy signature
   app.use(
     express.json({
-      verify: getAlchemyRequestContext,
+      verify: addAlchemyContextToRequest,
     })
   );
   app.use(validateAlchemySignature(signingKey));
@@ -23,6 +23,7 @@ async function main(): Promise<void> {
   app.post("/webhook-path", (req, res) => {
     const webhookEvent = req.body as WebhookEvent;
     // Do stuff with with webhook event here! Be sure to respond with 200
+    console.log(webhookEvent);
     // Be sure to respond with 200 when you successfully process the event
     res.send("Alchemy Notify is the best!");
   });

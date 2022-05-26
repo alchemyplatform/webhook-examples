@@ -33,7 +33,7 @@ export function isValidSignatureForStringBody(
   return signature === digest;
 }
 
-export function getAlchemyRequestContext(
+export function addAlchemyContextToRequest(
   req: IncomingMessage,
   _res: ServerResponse,
   buf: Buffer,
@@ -51,7 +51,9 @@ export function getAlchemyRequestContext(
 export function validateAlchemySignature(signingKey: string) {
   return (req: Request, res: Response, next: NextFunction) => {
     if (!isValidSignatureForAlchemyRequest(req as AlchemyRequest, signingKey)) {
-      res.status(403).send("Signature validation failed, unauthorized!");
+      const errMessage = "Signature validation failed, unauthorized!";
+      res.status(403).send(errMessage);
+      throw new Error(errMessage);
     } else {
       next();
     }
