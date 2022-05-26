@@ -28,7 +28,7 @@ yarn start 80
 
 And just like that, you're done!
 
-Note: there are at least three hard coded variables in that you will have to modify to fit your needs:
+Note: there are at least two hard coded variables in that you will have to modify to fit your needs:
 
 - `signingKey`: your webhook signing key, currently set to "whsec_test" in `index.ts`, please change it your actual signing key which you can find [here](https://docs.alchemy.com/alchemy/enhanced-apis/notify-api/using-notify#1.-find-your-signing-key)
 
