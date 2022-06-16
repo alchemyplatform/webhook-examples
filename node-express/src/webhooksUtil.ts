@@ -60,15 +60,15 @@ export function validateAlchemySignature(signingKey: string) {
   };
 }
 
-export interface WebhookEvent {
+export interface AlchemyWebhookEvent {
   webhookId: string;
   id: string;
   createdAt: Date;
-  type: WebhookType;
+  type: AlchemyWebhookType;
   event: Record<any, any>;
 }
 
-export type WebhookType =
+export type AlchemyWebhookType =
   | "MINED_TRANSACTION"
   | "DROPPED_TRANSACTION"
   | "ADDRESS_ACTIVITY";
