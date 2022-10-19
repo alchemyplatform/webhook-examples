@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -47,7 +48,11 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # Middleware needed to validate the alchemy signature
+    "backend.middleware.AlchemyRequestHandlerMiddleware",
 ]
+
+SIGNING_KEY = os.environ.get("SIGNING_KEY", "whsec_test")
 
 ROOT_URLCONF = "webhook_server.urls"
 
